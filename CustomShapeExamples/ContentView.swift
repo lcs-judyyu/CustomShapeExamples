@@ -120,8 +120,15 @@ struct Star: Shape {
 
 struct ContentView: View {
     var body: some View {
-        Star()
-            .stroke()
+        HStack {
+            Star()
+                .stroke()
+                .fill(.yellow)
+                .scaledToFit()
+        }
+        .padding(20)
+        //.rotationEffect(.degrees(30))
+            
     }
 }
 
