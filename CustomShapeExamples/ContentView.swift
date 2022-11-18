@@ -118,18 +118,75 @@ struct Star: Shape {
     
 }
 
+struct TriangleInStar: Shape {
+    
+    func path(in rect: CGRect) -> Path {
+        
+        // The path that describes the shape
+        var path = Path()
+        
+        // Define the center of x and y for the star
+        var center: Double
+        var centerX: Double
+        var centerY: Double
+        if rect.maxX >= rect.maxY {
+            
+            center = rect.maxY / 2.0
+            centerX = center + (rect.maxX - rect.maxY) / 2.0
+            centerY = center
+            
+        } else {
+            
+            center = rect.maxX / 2.0
+            centerX = center
+            centerY = center + (rect.maxY - rect.maxX) / 2.0
+            
+        }
+        
+        // Get the scale factor
+        var scaleOf: Double {
+            
+            return center * 2 / 5
+            
+        }
+        
+        // Where shape is described
+        path.move(to: CGPoint(x: centerX, y: centerY))
+        path.addLine(to: CGPoint(x: centerX - 0.6 * scaleOf, y: centerY - 0.6 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX, y: centerY - 2.4 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX, y: centerY))
+        
+        // Send back (return) the path that describes the shape
+        return path
+        
+    }
+    
+}
+
 struct ContentView: View {
     var body: some View {
-        HStack {
-            Star()
-                .stroke()
-                .fill(.yellow)
-                .scaledToFit()
-        }
-        .padding(20)
-        //.rotationEffect(.degrees(30))
+//        HStack {
+//            Star()
+//                .stroke()
+//                .fill(.yellow)
+//                .scaledToFit()
+//        }
+//        .padding(20)
+        ZStack {
             
+            TriangleInStar()
+                .stroke()
+            TriangleInStar()
+                .fill()
+                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+            
+            
+        }
+        .foregroundColor(.yellow)
+        
+        .padding(20)
     }
+
 }
 
 struct ContentView_Previews: PreviewProvider {
