@@ -99,17 +99,17 @@ struct Star: Shape {
         }
         
         // Where shape is described
-        path.move(to: CGPoint(x: centerX - 0.6 * scaleOf, y: centerY - 0.7 * scaleOf))
-        path.addLine(to: CGPoint(x: centerX, y: centerY - 2.5 * scaleOf)) // sharp
-        path.addLine(to: CGPoint(x: centerX + 0.6 * scaleOf, y: centerY - 0.7 * scaleOf))
-        path.addLine(to: CGPoint(x: centerX + 2.5 * scaleOf, y: centerY - 0.7 * scaleOf)) // sharp
-        path.addLine(to: CGPoint(x: centerX + 1.0 * scaleOf, y: centerY + 0.4 * scaleOf))
-        path.addLine(to: CGPoint(x: centerX + 1.6 * scaleOf, y: centerY + 2.3 * scaleOf)) // sharp
-        path.addLine(to: CGPoint(x: centerX, y: centerY + 1.15 * scaleOf))
-        path.addLine(to: CGPoint(x: centerX - 1.6 * scaleOf, y: centerY + 2.3 * scaleOf)) // sharp
-        path.addLine(to: CGPoint(x: centerX - 1.0 * scaleOf, y: centerY + 0.4 * scaleOf))
-        path.addLine(to: CGPoint(x: centerX - 2.5 * scaleOf, y: centerY - 0.7 * scaleOf)) // sharp
-        path.addLine(to: CGPoint(x: centerX - 0.6 * scaleOf, y: centerY - 0.7 * scaleOf))
+        path.move(to: CGPoint(x: centerX - 0.6 * scaleOf, y: centerY - 0.6 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX, y: centerY - 2.4 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX + 0.6 * scaleOf, y: centerY - 0.6 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX + 2.5 * scaleOf, y: centerY - 0.6 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX + 1.0 * scaleOf, y: centerY + 0.5 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX + 1.6 * scaleOf, y: centerY + 2.4 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX, y: centerY + 1.25 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX - 1.6 * scaleOf, y: centerY + 2.4 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX - 1.0 * scaleOf, y: centerY + 0.5 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX - 2.5 * scaleOf, y: centerY - 0.6 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX - 0.6 * scaleOf, y: centerY - 0.6 * scaleOf))
         
         // Send back (return) the path that describes the shape
         return path
