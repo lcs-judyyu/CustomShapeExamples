@@ -68,33 +68,27 @@ struct StarLike: Shape {
 
 struct Star: Shape {
     
-    // Function for converting degree to angle
-//    func degToRad(_ number: Double) -> Double {
-//        return number * .pi / 180
-//    }
-//
-//    let interiorAngle: Double = 120
-//
-//    var interiorAngleInRadians: Double {
-//        degToRad(interiorAngle)
-//    }
-    
     func path(in rect: CGRect) -> Path {
         
         // The path that describes the shape
         var path = Path()
         
-        // Define the center for the star
-        var center: Double {
-            if rect.maxX >= rect.maxY {
-                
-                return rect.maxY / 2.0
-                
-            } else {
-                
-                return rect.maxX / 2.0
-                
-            }
+        // Define the center of x and y for the star
+        var center: Double
+        var centerX: Double
+        var centerY: Double
+        if rect.maxX >= rect.maxY {
+            
+            center = rect.maxY / 2.0
+            centerX = center + (rect.maxX - rect.maxY) / 2.0
+            centerY = center
+            
+        } else {
+            
+            center = rect.maxX / 2.0
+            centerX = center
+            centerY = center + (rect.maxY - rect.maxX) / 2.0
+            
         }
         
         // Get the scale factor
@@ -105,12 +99,17 @@ struct Star: Shape {
         }
         
         // Where shape is described
-        path.move(to: CGPoint(x: (center - 0.6) * scaleOf, y: (center - 0.6) * scaleOf))
-        path.addLine(to: CGPoint(x: (center + 0.6) * scaleOf, y: (center + 0.6) * scaleOf))
-        path.addLine(to: CGPoint(x: (center + 1.0) * scaleOf, y: (center + 0.4) * scaleOf))
-        path.addLine(to: CGPoint(x: (center) * scaleOf, y: (center + 1.0) * scaleOf))
-        path.addLine(to: CGPoint(x: (center - 1.0) * scaleOf, y: (center + 0.4) * scaleOf))
-        path.addLine(to: CGPoint(x: (center + 0.6) * scaleOf, y: (center + 0.6) * scaleOf))
+        path.move(to: CGPoint(x: centerX - 0.6 * scaleOf, y: centerY - 0.7 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX, y: centerY - 2.5 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX + 0.6 * scaleOf, y: centerY - 0.7 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX + 2.5 * scaleOf, y: centerY - 0.7 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX + 1.0 * scaleOf, y: centerY + 0.4 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX + 1.6 * scaleOf, y: centerY + 2.3 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX, y: centerY + 1.15 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX - 1.6 * scaleOf, y: centerY + 2.3 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX - 1.0 * scaleOf, y: centerY + 0.4 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX - 2.5 * scaleOf, y: centerY - 0.7 * scaleOf)) // sharp
+        path.addLine(to: CGPoint(x: centerX - 0.6 * scaleOf, y: centerY - 0.7 * scaleOf))
         
         // Send back (return) the path that describes the shape
         return path
@@ -121,7 +120,7 @@ struct Star: Shape {
 
 struct ContentView: View {
     var body: some View {
-       Star()
+        Star()
             .stroke()
     }
 }
