@@ -152,7 +152,7 @@ struct TriangleInStar: Shape {
         
         // Where shape is described
         path.move(to: CGPoint(x: centerX, y: centerY))
-        path.addLine(to: CGPoint(x: centerX - 0.6 * scaleOf, y: centerY - 0.6 * scaleOf))
+        path.addLine(to: CGPoint(x: centerX - 0.61 * scaleOf, y: centerY - 0.85 * scaleOf))
         path.addLine(to: CGPoint(x: centerX, y: centerY - 2.4 * scaleOf)) // sharp
         path.addLine(to: CGPoint(x: centerX, y: centerY))
         
@@ -165,28 +165,30 @@ struct TriangleInStar: Shape {
 
 struct ContentView: View {
     var body: some View {
-//        HStack {
-//            Star()
-//                .stroke()
-//                .fill(.yellow)
-//                .scaledToFit()
-//        }
-//        .padding(20)
-        ZStack {
-            
-            TriangleInStar()
+        HStack {
+            Star()
                 .stroke()
-            TriangleInStar()
-                .fill()
-                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-            
-            
+                .fill(.yellow)
+                .scaledToFit()
+            ZStack {
+                ForEach((0...4), id: \.self) { index in
+                    
+                    ZStack {
+                        TriangleInStar()
+                            .stroke()
+                        TriangleInStar()
+                            .stroke()
+                            .background(TriangleInStar().fill())
+                            .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                    }
+                    .rotationEffect(.degrees(72.0 * Double(index)))
+                    
+                }
+            }
+            .foregroundColor(.yellow)
         }
-        .foregroundColor(.yellow)
-        
         .padding(20)
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
