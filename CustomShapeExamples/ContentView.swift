@@ -166,13 +166,13 @@ struct TriangleInStar: Shape {
 struct ContentView: View {
     var body: some View {
         HStack {
-            Star()
-                .stroke()
-                .fill(.yellow)
-                .scaledToFit()
+//            Star()
+//                .stroke()
+//                .fill()
+//                .scaledToFit()
             ZStack {
                 ForEach((0...4), id: \.self) { index in
-                    
+
                     ZStack {
                         TriangleInStar()
                             .stroke()
@@ -182,11 +182,12 @@ struct ContentView: View {
                             .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                     }
                     .rotationEffect(.degrees(72.0 * Double(index)))
-                    
+
                 }
             }
             .foregroundColor(.yellow)
         }
+        .foregroundColor(.yellow)
         .padding(20)
     }
 }
